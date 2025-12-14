@@ -117,23 +117,34 @@ h1::after {
 }
 
 /* Author names styling */
-b {
-  display: block;
-  text-align: center;
-  margin-bottom: 1rem;
+.authors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-paper);
+  border: 1px solid var(--border-light);
+  box-shadow: 2px 2px 0 var(--shadow-color);
 }
 
-b p {
-  display: inline-block;
+.authors span {
   font-weight: 600;
   font-style: italic;
   color: var(--accent-dark);
   font-size: 0.95rem;
-  letter-spacing: 0.1em;
-  padding: 0.4rem 1.5rem;
-  background: var(--accent-pale);
-  border: 1px solid var(--border-light);
-  margin: 0;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.authors span:not(:last-child)::after {
+  content: "・";
+  margin-left: 0.5rem;
+  color: var(--accent-main);
+  font-style: normal;
 }
 
 /* Section headings */
@@ -320,9 +331,13 @@ body > p:first-of-type::before {
     text-indent: 0;
   }
   
-  b p {
+  .authors {
+    padding: 0.75rem 1rem;
+    gap: 0.25rem 0.5rem;
+  }
+
+  .authors span {
     font-size: 0.85rem;
-    padding: 0.3rem 1rem;
   }
 }
 
@@ -368,7 +383,7 @@ body > p:first-of-type::before {
     display: none;
   }
   
-  h1, h2, p, b p {
+  h1, h2, p, .authors, .authors span {
     background: none;
     border: none;
     box-shadow: none;
