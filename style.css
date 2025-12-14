@@ -1,22 +1,23 @@
-/* AI 2027 - Glassmorphism Modern Style */
+/* AI 2027 - Retro Terminal Style (White & Green) */
 
 /* CSS Variables for theming */
 :root {
-  --bg-gradient-start: #0a0a1a;
-  --bg-gradient-mid: #1a1a3a;
-  --bg-gradient-end: #0f0f2a;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: rgba(0, 0, 0, 0.3);
-  --text-primary: #e8e8f0;
-  --text-secondary: #a0a0b8;
-  --text-accent: #7dd3fc;
-  --heading-color: #f0f0ff;
-  --link-color: #67e8f9;
-  --link-hover: #a5f3fc;
-  --hr-gradient-start: #3b82f6;
-  --hr-gradient-end: #8b5cf6;
-  --selection-bg: rgba(125, 211, 252, 0.3);
+  --bg-primary: #f5f5f0;
+  --bg-secondary: #e8e8e0;
+  --bg-paper: #fafaf5;
+  --border-color: #2d5a3d;
+  --border-light: #7cb992;
+  --text-primary: #1a1a18;
+  --text-secondary: #3d3d38;
+  --accent-dark: #1e4d2b;
+  --accent-main: #2d7a4a;
+  --accent-light: #4a9d6a;
+  --accent-pale: #d4e8dc;
+  --heading-color: #1a3d28;
+  --link-color: #2d7a4a;
+  --link-hover: #1e4d2b;
+  --shadow-color: rgba(45, 90, 61, 0.15);
+  --selection-bg: #b8d4c4;
 }
 
 /* Selection styling */
@@ -40,33 +41,43 @@ html {
 }
 
 body {
-  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
-  line-height: 1.85;
+  font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", "Times New Roman", serif;
+  line-height: 2;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
-  background-attachment: fixed;
+  background-color: var(--bg-primary);
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(45, 90, 61, 0.03) 31px,
+      rgba(45, 90, 61, 0.03) 32px
+    );
   min-height: 100vh;
   padding: 2rem 1rem;
-  position: relative;
 }
 
-/* Animated background particles effect */
+/* Decorative header stripe */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(ellipse at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: -1;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent-dark) 0px,
+    var(--accent-dark) 20px,
+    var(--accent-main) 20px,
+    var(--accent-main) 40px,
+    var(--accent-light) 40px,
+    var(--accent-light) 60px
+  );
+  z-index: 1000;
 }
 
-/* Main content container - Glass card */
+/* Main content container */
 body > h1:first-of-type,
 body > p,
 body > b,
@@ -77,180 +88,199 @@ body > hr {
   margin-right: auto;
 }
 
-/* Glassmorphism container wrapper */
-h1, h2, p, b {
-  position: relative;
-}
-
 /* Main title styling */
 h1 {
   font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
   color: var(--heading-color);
+  margin-top: 2rem;
   margin-bottom: 2rem;
-  padding: 2rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  padding: 1.5rem 2rem;
+  background: var(--bg-paper);
+  border: 3px double var(--border-color);
+  border-radius: 0;
   box-shadow: 
-    0 8px 32px var(--glass-shadow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  letter-spacing: 0.15em;
-  text-shadow: 0 2px 10px rgba(125, 211, 252, 0.3);
-  animation: fadeInDown 0.8s ease-out;
+    4px 4px 0 var(--accent-pale),
+    8px 8px 0 var(--border-light);
+  letter-spacing: 0.2em;
+  position: relative;
+}
+
+h1::before,
+h1::after {
+  content: "❧";
+  color: var(--accent-main);
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
 }
 
 /* Author names styling */
 b {
   display: block;
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 b p {
   display: inline-block;
-  font-weight: 500;
-  color: var(--text-accent);
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  padding: 0.3rem 1rem;
-  background: rgba(125, 211, 252, 0.1);
-  border-radius: 20px;
-  border: 1px solid rgba(125, 211, 252, 0.2);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--accent-dark);
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 1.5rem;
+  background: var(--accent-pale);
+  border: 1px solid var(--border-light);
   margin: 0;
 }
 
 /* Section headings */
 h2 {
   font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: var(--heading-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--bg-paper);
+  background: linear-gradient(180deg, var(--accent-main) 0%, var(--accent-dark) 100%);
   margin-top: 3rem;
   margin-bottom: 1.5rem;
-  padding: 1.25rem 1.75rem;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  border-left: 4px solid;
-  border-image: linear-gradient(180deg, var(--hr-gradient-start), var(--hr-gradient-end)) 1;
-  border-radius: 0 16px 16px 0;
-  box-shadow: 
-    0 4px 20px rgba(139, 92, 246, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  animation: fadeInLeft 0.6s ease-out;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  position: relative;
+  box-shadow: 3px 3px 0 var(--accent-pale);
+}
+
+h2::before {
+  content: "§";
+  margin-right: 0.75rem;
+  font-weight: normal;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 20px;
+  right: 20px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent-light) 0px,
+    var(--accent-light) 4px,
+    transparent 4px,
+    transparent 8px
+  );
 }
 
 /* Paragraph styling */
 p {
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
-  padding: 1.25rem 1.75rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: 0 4px 16px var(--glass-shadow);
-  transition: all 0.3s ease;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-paper);
+  border-left: 4px solid var(--accent-main);
+  border-right: 1px solid var(--border-light);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 2px 2px 0 var(--shadow-color);
   text-align: justify;
+  text-indent: 1em;
+  transition: all 0.2s ease;
 }
 
 p:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 8px 24px var(--glass-shadow),
-    0 0 20px rgba(125, 211, 252, 0.05);
+  border-left-color: var(--accent-dark);
+  border-left-width: 6px;
+  background: #ffffff;
+  transform: translateX(2px);
+}
+
+/* First letter styling for paragraphs */
+p::first-letter {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--accent-dark);
 }
 
 /* Horizontal rule styling */
 hr {
   border: none;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--hr-gradient-start) 20%, 
-    var(--hr-gradient-end) 80%, 
-    transparent 100%
-  );
-  margin: 3rem auto;
-  border-radius: 2px;
-  opacity: 0.7;
-  position: relative;
+  height: auto;
+  margin: 2.5rem auto;
+  text-align: center;
+  background: transparent;
 }
 
 hr::before {
-  content: "◆";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--bg-gradient-mid);
-  padding: 0 1rem;
-  color: var(--text-accent);
-  font-size: 0.8rem;
+  content: "✦ ✦ ✦";
+  display: block;
+  color: var(--accent-main);
+  font-size: 1.2rem;
+  letter-spacing: 1rem;
+  position: relative;
+}
+
+hr::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 2px;
+  margin: 0.5rem auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border-light) 20%,
+    var(--accent-main) 50%,
+    var(--border-light) 80%,
+    transparent 100%
+  );
 }
 
 /* Links styling */
 a {
   color: var(--link-color);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s ease;
+  border-bottom: 1px dashed var(--link-color);
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 a:hover {
   color: var(--link-hover);
-  border-bottom-color: var(--link-hover);
-  text-shadow: 0 0 10px rgba(103, 232, 249, 0.5);
+  border-bottom-style: solid;
+  background: var(--accent-pale);
+  padding: 0 0.2em;
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-gradient-start);
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border-light);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--hr-gradient-start), var(--hr-gradient-end));
-  border-radius: 5px;
+  background: linear-gradient(180deg, var(--accent-light), var(--accent-main));
+  border: 2px solid var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--link-color), var(--hr-gradient-end));
+  background: linear-gradient(180deg, var(--accent-main), var(--accent-dark));
 }
 
-/* Animations */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* Retro decorative corners for main content area */
+body > p:first-of-type::before {
+  content: "┌";
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+  font-size: 1.5rem;
+  color: var(--accent-main);
+  font-family: monospace;
 }
 
 /* Responsive adjustments */
@@ -261,46 +291,67 @@ a:hover {
   
   body {
     padding: 1rem 0.75rem;
+    padding-top: 2rem;
   }
   
   h1 {
-    font-size: 2rem;
-    padding: 1.5rem;
+    font-size: 1.75rem;
+    padding: 1.25rem 1.5rem;
     letter-spacing: 0.1em;
+    box-shadow: 
+      3px 3px 0 var(--accent-pale),
+      6px 6px 0 var(--border-light);
+  }
+  
+  h1::before,
+  h1::after {
+    display: none;
   }
   
   h2 {
-    font-size: 1.35rem;
-    padding: 1rem 1.25rem;
+    font-size: 1.25rem;
+    padding: 0.7rem 1.25rem;
     margin-top: 2rem;
   }
   
   p {
-    padding: 1rem 1.25rem;
+    padding: 0.875rem 1.25rem;
     text-align: left;
+    text-indent: 0;
   }
   
   b p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 0.3rem 1rem;
   }
 }
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.75rem;
-    padding: 1.25rem;
-    border-radius: 16px;
+    font-size: 1.5rem;
+    padding: 1rem;
+    box-shadow: 
+      2px 2px 0 var(--accent-pale),
+      4px 4px 0 var(--border-light);
   }
   
   h2 {
-    font-size: 1.2rem;
-    padding: 0.875rem 1rem;
-    border-radius: 0 12px 12px 0;
+    font-size: 1.1rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  h2::after {
+    left: 10px;
+    right: 10px;
   }
   
   p {
-    padding: 0.875rem 1rem;
-    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    border-left-width: 3px;
+  }
+  
+  hr::before {
+    letter-spacing: 0.5rem;
   }
 }
 
@@ -308,6 +359,7 @@ a:hover {
 @media print {
   body {
     background: white;
+    background-image: none;
     color: black;
     padding: 0;
   }
@@ -318,7 +370,6 @@ a:hover {
   
   h1, h2, p, b p {
     background: none;
-    backdrop-filter: none;
     border: none;
     box-shadow: none;
     color: black;
@@ -328,17 +379,32 @@ a:hover {
     border-bottom: 2px solid black;
   }
   
+  h1::before,
+  h1::after {
+    display: none;
+  }
+  
   h2 {
+    background: none;
+    color: black;
     border-left: 3px solid black;
     padding-left: 1rem;
   }
   
-  hr {
-    background: black;
-  }
-  
-  hr::before {
+  h2::after {
     display: none;
   }
+  
+  p {
+    border-left: 2px solid #333;
+  }
+  
+  hr::before,
+  hr::after {
+    display: none;
+  }
+  
+  hr {
+    border-top: 1px solid black;
+  }
 }
-
